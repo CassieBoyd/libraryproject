@@ -1,5 +1,5 @@
 from django.db import models
-
+from .librarian import Librarian
 
 
 class Book (models.Model):
@@ -19,3 +19,5 @@ class Book (models.Model):
 
     def get_absolute_url(self):
         return reverse("book_detail", kwargs={"pk": self.pk})
+
+    librarian = models.ForeignKey(Librarian, on_delete=models.CASCADE)
