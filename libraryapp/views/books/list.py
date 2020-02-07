@@ -3,7 +3,6 @@ from django.shortcuts import render
 from libraryapp.models import Book
 from ..connection import Connection
 
-
 # Note that the row factory being used for this connection to the database uses the built-in sqlite3.Row method. This allows developers to access columns in each row in the dataset by the column name instead of by index in the tuple.
 def book_list(request):
     if request.method == 'GET':
@@ -17,7 +16,7 @@ def book_list(request):
                 b.title,
                 b.isbn,
                 b.author,
-                b.year_published,
+                b.published,
                 b.librarian_id,
                 b.location_id
             from libraryapp_book b
@@ -32,7 +31,7 @@ def book_list(request):
                 book.title = row['title']
                 book.isbn = row['isbn']
                 book.author = row['author']
-                book.year_published = row['year_published']
+                book.published = row['published']
                 book.librarian_id = row['librarian_id']
                 book.location_id = row['location_id']
 
