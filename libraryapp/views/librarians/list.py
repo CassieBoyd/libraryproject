@@ -4,7 +4,7 @@ from libraryapp.models import Librarian
 from ..connection import Connection
 
 
-def list_librarians(request):
+def librarian_list(request):
     with sqlite3.connect(Connection.db_path) as conn:
         conn.row_factory = sqlite3.Row
         db_cursor = conn.cursor()
