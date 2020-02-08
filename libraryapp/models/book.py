@@ -1,5 +1,6 @@
 from django.db import models
 from .librarian import Librarian
+from .library import Library
 
 
 class Book (models.Model):
@@ -8,16 +9,9 @@ class Book (models.Model):
     isbn = models.CharField(max_length=50)
     author = models.CharField(max_length=50)
     published = models.IntegerField()
-
-
-    class Meta:
-        verbose_name = ("book")
-        verbose_name_plural = ("books")
-
-    def __str__(self):
-        return self.name
-
-    def get_absolute_url(self):
-        return reverse("book_detail", kwargs={"pk": self.pk})
-
     librarian = models.ForeignKey(Librarian, on_delete=models.CASCADE)
+    location = models.ForeignKey(
+        Library, related_name="books",
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE)
