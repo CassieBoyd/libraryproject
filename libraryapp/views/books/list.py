@@ -2,8 +2,10 @@ import sqlite3
 from django.shortcuts import render
 from libraryapp.models import Book
 from ..connection import Connection
+from django.contrib.auth.decorators import login_required
 
 # Note that the row factory being used for this connection to the database uses the built-in sqlite3.Row method. This allows developers to access columns in each row in the dataset by the column name instead of by index in the tuple.
+@login_required
 def book_list(request):
     if request.method == 'GET':
         with sqlite3.connect(Connection.db_path) as conn:
