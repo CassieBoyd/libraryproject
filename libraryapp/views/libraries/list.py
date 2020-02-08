@@ -12,7 +12,7 @@ def library_list(request):
         db_cursor.execute("""
         select
             l.title,
-            l.address,
+            l.address
         from libraryapp_library l
         """)
 
