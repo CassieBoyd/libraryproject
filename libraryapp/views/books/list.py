@@ -1,9 +1,10 @@
 import sqlite3
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from libraryapp.models import Book
 from ..connection import Connection
 from django.contrib.auth.decorators import login_required
 from libraryapp.models import model_factory
+from django.urls import reverse
 
 
 # Note that the row factory being used for this connection to the database uses the built-in sqlite3.Row method. This allows developers to access columns in each row in the dataset by the column name instead of by index in the tuple.
@@ -61,12 +62,11 @@ def book_list(request):
         INSERT INTO libraryapp_book
         (
             title, author, isbn,
-            year_published, location_id, librarian_id
+            published, location_id, librarian_id
         )
         VALUES (?, ?, ?, ?, ?, ?)
         """,
         (form_data['title'], form_data['author'],
-            form_data['isbn'], form_data['year_published'],
-            request.user.librarian.id, form_data["location"]))
+            form_data['isbn'], form_data['published'], form_data["location"], request.user.librarian.id))
 
     return redirect(reverse('libraryapp:books'))
