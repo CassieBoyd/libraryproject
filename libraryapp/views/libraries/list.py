@@ -18,6 +18,7 @@ def library_list(request):
 
             db_cursor.execute("""
             select
+                l.id,
                 l.title,
                 l.address
             from libraryapp_library l
