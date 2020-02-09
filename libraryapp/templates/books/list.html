@@ -14,7 +14,9 @@
             {{ book.title }}
             by {{book.author}}
             published in {{book.published}}
-        </li> {% endcomment %}
+        </li>  <------Previous code   {% endcomment %}
+
+        {% comment %} The url keyword in the interpolation is a shortcut for Django to look up a named route in your urls.py. Then you specify the name of the route you want to look up. In this case, it's the pattern named book in the library application. The third item in there - book.id - is the route parameter you want to send to that URL. This code will generate http://localhost:8080/books/{id} for each book.{% endcomment %}
         <li>
         <a href="{% url 'libraryapp:book' book.id %}"> {{ book.title }} </a>
         by {{book.author}} published in {{book.published}}
