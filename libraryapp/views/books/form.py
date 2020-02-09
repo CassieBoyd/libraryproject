@@ -6,7 +6,7 @@ from libraryapp.models import Library
 from libraryapp.models import model_factory
 from ..connection import Connection
 
-
+# For drop-down form to display existing libraries
 def get_libraries():
     with sqlite3.connect(Connection.db_path) as conn:
         conn.row_factory = model_factory(Library)
