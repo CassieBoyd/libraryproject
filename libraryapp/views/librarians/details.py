@@ -22,7 +22,8 @@ def get_librarian(librarian_id):
             u.email
         from libraryapp_librarian l
         join auth_user u on l.user_id = u.id
-        """)
+        WHERE l.id = ?
+        """, (librarian_id,))
 
         return db_cursor.fetchone()
 
