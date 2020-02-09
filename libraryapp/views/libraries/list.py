@@ -3,11 +3,15 @@ from django.shortcuts import render
 from libraryapp.models import Library
 from ..connection import Connection
 from django.contrib.auth.decorators import login_required
+from libraryapp.models import model_factory
+
 
 @login_required
 def library_list(request):
     with sqlite3.connect(Connection.db_path) as conn:
-        conn.row_factory = sqlite3.Row
+        conn.row_factory = model_factory(Library)
+
+        # conn.row_factory = sqlite3.Row
         db_cursor = conn.cursor()
 
         db_cursor.execute("""
@@ -17,15 +21,16 @@ def library_list(request):
         from libraryapp_library l
         """)
 
-        all_libraries = []
-        dataset = db_cursor.fetchall()
+        all_libraries = db_cursor.fetchall()
+        # all_libraries = []
+        # dataset = db_cursor.fetchall()
 
-        for row in dataset:
-            lib = Library()
-            lib.title = row["title"]
-            lib.address = row["address"]
+        # for row in dataset:
+        #     lib = Library()
+        #     lib.title = row["title"]
+        #     lib.address = row["address"]
 
-            all_libraries.append(lib)
+        #     all_libraries.append(lib)
 
     template_name = 'libraries/list.html'
 
