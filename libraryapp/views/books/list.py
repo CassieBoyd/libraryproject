@@ -46,6 +46,7 @@ def book_list(request):
             #     all_books.append(book)
 
         template = 'books/list.html'
+        # Context is name of dictionary, gets passed to template
         context = {
             'all_books': all_books
         }
