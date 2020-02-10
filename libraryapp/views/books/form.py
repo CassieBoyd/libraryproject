@@ -1,10 +1,9 @@
 import sqlite3
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from libraryapp.models import Book
-from libraryapp.models import Library
-from libraryapp.models import model_factory
+from libraryapp.models import Book, Library, model_factory
 from ..connection import Connection
+from .details import get_book
 
 # For drop-down form to display existing libraries
 def get_libraries():

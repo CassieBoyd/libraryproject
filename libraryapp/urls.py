@@ -1,8 +1,7 @@
-from django.urls import path
 from .views import *
 from django.urls import include, path
 
-
+# Namespace
 app_name = "libraryapp"
 
 urlpatterns = [
