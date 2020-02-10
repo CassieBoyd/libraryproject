@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Library</title>
+</head>
+
+<body>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+
+</html>
+
+{% comment %} You want every page of HTML delivered to the client to have this exact, same structure, and every other template will place its code inside the {% block content %}. {% endcomment %}
